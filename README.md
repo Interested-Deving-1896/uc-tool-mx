@@ -1,60 +1,29 @@
-# uc-tool
+[update-readmes]   Mode: rewrite — migrating to template structure...
+# uc-tool-mx
 
-Generate AMD/Intel CPU microcode CPIO images from system firmware and
-optionally inject them into a live initrd, strip them out, or list initrd content.
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/uc-tool-mx)
 
-Designed for use with [antiX Linux](https://antixlinux.com) and
-[MX Linux](https://mxlinux.org) live toolset:
-live-usb-maker, mx-snapshot/iso-snapshot, live-remaster, live-kernel-updater, and build-iso.
-Works standalone on any Debian/Ubuntu system.
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-## What it does
+## Architecture
 
-| Mode | Command |
-|------|---------|
-| Generate microcode images + update initrd | `uc-tool -i /boot/initrd.img` |
-| Generate images only, save to dir | `uc-tool -d /tmp/ucode` |
-| Auto-detect initrd and dir from boot mode | `uc-tool -D` |
-| Update initrd, keep the .img files | `uc-tool -i /boot/initrd.img -k` |
-| Use firmware from a squashfs image | `uc-tool -F /path/to/linuxfs -i initrd.gz` |
-| Strip microcode from initrd (no replacement) | `uc-tool -S -i /boot/initrd.img` |
-| Check whether initrd contains microcode | `uc-tool -H -i /boot/initrd.img` |
-| List ucode CPIOs (no writes) | `uc-tool -l -i /boot/initrd.img` |
-| List all sections with sizes and compression | `uc-tool -l all -i /boot/initrd.img` |
-| List all sections + files inside each | `uc-tool -l unpack -i /boot/initrd.img` |
-| Extract ucode CPIOs only | `uc-tool -x -d /tmp/out -i /boot/initrd.img` |
-| Extract all sections as raw files | `uc-tool --extract=all -d /tmp/out -i /boot/initrd.img` |
-| Extract all sections + unpack each | `uc-tool --extract=unpack -d /tmp/out -i /boot/initrd.img` |
-| Repack sections back into initrd | `uc-tool --repack=/tmp/out -i /boot/initrd.img` |
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-When updating an initrd the tool:
-- strips any existing microcode CPIOs from the head of the initrd
-- prepends the freshly generated ones
-- refreshes the `.md5` sidecar file if present
-- runs `e4defrag` if the target is on ext4
-- verifies write integrity before removing the backup
+## Install
 
-## Dependencies
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
 
-| Package | Purpose |
-|---------|---------|
-| `cpio`, `coreutils`, `findutils` | required |
-| `iucode-tool` | required for Intel microcode |
-| `mount` | required only when `-F` points to a squashfs file |
-
-## Installation
-
-**From the .deb (recommended):**
-```sh
-sudo dpkg -i uc-tool_*.deb
-```
-
-**Manually:**
-```sh
-sudo install -m 0755 uc-tool /usr/bin/uc-tool
+```bash
+git clone https://github.com/Interested-Deving-1896/uc-tool-mx.git
+cd uc-tool-mx
 ```
 
 ## Usage
+
 
 ```
 Usage:  uc-tool [options]
@@ -101,45 +70,50 @@ Usage:  uc-tool [options]
   -v  --version            Show version and exit
 ```
 
-## Building the .deb
+## Configuration
 
-**Requirements:** `devscripts`, `debhelper`
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
 
-```sh
-sudo apt install devscripts debhelper
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/uc-tool-mx`](https://github.com/Interested-Deving-1896/uc-tool-mx) and mirrored through:
+
+```
+Interested-Deving-1896/uc-tool-mx  ──►  OpenOS-Project-OSP/uc-tool-mx  ──►  OpenOS-Project-Ecosystem-OOC/uc-tool-mx
 ```
 
-From the repository root:
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-```sh
-cd deb-src
-make
-```
+## Contributors
 
-This copies the current `uc-tool` script into the source tree and runs
-`debuild -uc -us` to produce `uc-tool_<version>_all.deb` in `deb-src/`.
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
 
-Or build manually:
+## Origins
 
-```sh
-cd deb-src/uc-tool-mx
-cp ../../uc-tool .
-debuild -uc -us
-```
+<!-- AI:start:origins -->
+_Original project — no upstream fork._
+<!-- AI:end:origins -->
 
-To bump the version before building:
-1. Edit `VERSION=` near the top of `uc-tool`
-2. Add a new entry to `deb-src/uc-tool/debian/changelog`:
-   ```sh
-   cd deb-src/uc-tool
-   dch -v 1.1 "Your change summary"
-   ```
-3. Run `make` from `deb-src/`
+## Resources
+
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
 ## License
 
-GNU General Public License v3 — see [debian/copyright](deb-src/uc-tool/debian/copyright)
-or <https://www.gnu.org/licenses/gpl-3.0.html>.
-
-Copyright © 2026 fehlix \<fehlix@mxlinux.org\>  
-Copyright © 2026 MX Linux Development Team \<https://mxlinux.org\>
+<!-- AI:start:license -->
+[GPL-3.0](https://github.com/Interested-Deving-1896/uc-tool-mx/blob/main/LICENSE) © 2026 [Interested-Deving-1896](https://github.com/Interested-Deving-1896)
+<!-- AI:end:license -->
